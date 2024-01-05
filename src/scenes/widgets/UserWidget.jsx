@@ -22,17 +22,20 @@ const UserWidget = ({ userId, picturePath }) => {
   const main = palette.neutral.main;
 
   const getUser = async () => {
-    const response = await fetch(`http://localhost:3001/users/${userId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const response = await fetch(
+      `https://socifybackend.onrender.com/users/${userId}`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     const data = await response.json();
     setUser(data);
   };
 
   useEffect(() => {
     getUser();
-  }, []); 
+  }, []);
 
   if (!user) {
     return null;
@@ -108,7 +111,7 @@ const UserWidget = ({ userId, picturePath }) => {
       </Box>
 
       <Divider />
-      
+
       <Box p="1rem 0">
         <Typography fontSize="1rem" color={main} fontWeight="500" mb="1rem">
           Social Profiles
